@@ -1,8 +1,5 @@
-import { db } from "../src/utils/db.server";
 import { customAlphabet } from "nanoid";
-
-const nanoid = customAlphabet("1234567890", 10);
-const id = nanoid();
+import { db } from "../src/utils/db.server";
 
 type Author = {
   firstName: string;
@@ -20,7 +17,7 @@ async function seed() {
     getAuthors().map((author) => {
       return db.author.create({
         data: {
-          id: Number(id),
+          id: customAlphabet("1234567890abcdef", 24)(),
           firstName: author.firstName,
           lastName: author.lastName,
         },
@@ -32,17 +29,16 @@ async function seed() {
       firstName: "John",
     },
   });
-
   await Promise.all(
     getBooks().map((book) => {
       const { title, isFiction, datePublished } = book;
       return db.book.create({
         data: {
-          id: Number(id),
+          id: customAlphabet("1234567890abcdef", 24)(),
           title,
           isFiction,
           datePublished,
-          authorId: author?.id ?? 0,
+          authorId: author!.id || "",
         },
       });
     })

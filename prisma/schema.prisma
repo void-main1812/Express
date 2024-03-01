@@ -12,7 +12,7 @@ datasource db {
 // Author model
 model Author {
   // the @id directive is used to mark the field as the primary key
-  id        Int      @id @map("_id")
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   firstName String
@@ -22,7 +22,7 @@ model Author {
 }
 
 model Book {
-  id            Int      @id @map("_id")
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   title         String
@@ -30,5 +30,5 @@ model Book {
   datePublished DateTime
   // here this field is used to define the relation between the Book and Author models. The @relation directive is used to define the relation between the two models
   author        Author   @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId      Int    
+  authorId      String   @db.ObjectId // Change the type to match the referenced field
 }
