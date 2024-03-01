@@ -21,6 +21,7 @@
     "dev": "nodemon src/index.ts"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2",
     "@prisma/client": "^5.10.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
