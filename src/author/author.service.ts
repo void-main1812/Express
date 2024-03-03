@@ -1,9 +1,10 @@
 import { customAlphabet } from "nanoid";
 import { db } from "../utils/db.server";
+import { Prisma } from "@prisma/client";
 
 // Author type definition with id, firstName, lastName, and createdAt fields
 type Author = {
-  id: string;
+  id?: string;
   firstName: string;
   lastName: string;
   createdAt?: Date;
@@ -35,6 +36,7 @@ export const getAuthor = async (id: string): Promise<Author | null> => {
       firstName: true,
       lastName: true,
       createdAt: true,
+      updatedAt: true,
     },
   });
 };
@@ -45,10 +47,9 @@ export const createAuthor = async (
   const { firstName, lastName } = author;
   return db.author.create({
     data: {
-      id: customAlphabet("1234567890abcdef", 24)(),
       firstName,
       lastName,
-    },
+    } as Prisma.AuthorCreateInput,
     select: {
       id: true,
       firstName: true,
