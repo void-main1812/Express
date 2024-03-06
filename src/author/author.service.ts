@@ -3,7 +3,7 @@ import { db } from "../utils/db.server";
 import { Prisma } from "@prisma/client";
 
 // Author type definition with id, firstName, lastName, and createdAt fields
-type Author = {
+export type Author = {
   id?: string;
   firstName: string;
   lastName: string;
