@@ -17,7 +17,6 @@ async function seed() {
     getAuthors().map((author) => {
       return db.author.create({
         data: {
-          id: customAlphabet("1234567890abcdef", 24)(),
           firstName: author.firstName,
           lastName: author.lastName,
         },
@@ -34,7 +33,6 @@ async function seed() {
       const { title, isFiction, datePublished } = book;
       return db.book.create({
         data: {
-          id: customAlphabet("1234567890abcdef", 24)(),
           title,
           isFiction,
           datePublished,
