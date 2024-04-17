@@ -5,6 +5,7 @@ import {
   Severity,
   pre,
   DocumentType,
+  index,
 } from "@typegoose/typegoose";
 import argon2 from "argon2";
 import log from "../utils/logger";
@@ -21,6 +22,7 @@ import { nanoid } from "nanoid";
 
   return;
 })
+@index({ email: 1 })
 // Data model for user
 @modelOptions({
   schemaOptions: {
