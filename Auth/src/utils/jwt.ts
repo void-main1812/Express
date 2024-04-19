@@ -25,10 +25,14 @@ export function verifyJwt<T>(
     "ascii"
   );
 
+  console.log(publicKey);
+
   try {
     const decoded = jwt.verify(token, publicKey) as T;
+    console.log(decoded);
     return decoded;
   } catch (e) {
+    console.error(e);
     return null;
   }
 }
